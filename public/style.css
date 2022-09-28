@@ -1,0 +1,19 @@
+h1 {
+    font-weight: lighter;
+    font-style: italic;
+  }
+
+   /* layout */
+.dark h2{
+  visibility: hidden;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.dark-nav a{
+  color: white;
+  text-decoration: none;
+}
