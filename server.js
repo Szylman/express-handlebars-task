@@ -3,7 +3,20 @@ const path = require('path');
 const app = express();
 const hbs = require('express-handlebars');
 const multer = require("multer");
-const upload = multer({dest: 'public/image'})
+
+const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, 'public/image')
+        },
+        filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        console.log(file);
+        const [filename, ext] = file.originalname.split('.')
+        cb(null, filename + '-' + uniqueSuffix + '.' + ext)
+        }
+    })
+
+const upload = multer({ storage: storage })
 
 app.use(express.static(path.join(__dirname, '/public')));
 
